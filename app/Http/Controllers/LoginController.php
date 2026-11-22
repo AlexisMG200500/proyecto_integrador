@@ -8,5 +8,17 @@ class LoginController extends Controller
 {
   public function login(){
     return view ('login');
-  }    
+  }
+  
+  public function valida(){
+
+  }
+
+  public function recuperar(){
+    
+  }
+  public function restaurar(){
+    
+  }
+
 }
