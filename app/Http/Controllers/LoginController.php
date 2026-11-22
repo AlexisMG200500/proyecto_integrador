@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
 use Session;
-
+use Mail;
 
 class LoginController extends Controller{
   public function login(){
@@ -46,10 +46,45 @@ class LoginController extends Controller{
   }
 
   public function recuperar(){
-    
+    return view ('restaurar_email');    
   }
-  public function restaurar(){
+  public function restaurar(Request $request){
+    $email = $request->email;
+
+    $validated = $request->validate([
+      'email'=>'required|email'
+    ]);
+
+    $email = $validated['email'];
+
+    $consulta = Usuario::where('email','=',$email)->get();
+
+
+    if($consulta->isEmpty()){
+      Session::flash('no','El correo no existe, verifiquelo de nuevo');
+      return redirect()->route('recuperar');
+    }else{
+      $asunto = "Tu contraseña se ha modificado";
+      $letras = "abcdefghijklmnopqrstuvwxyz0987654321";
+      $nuevopw = substr(str_shuffle($letras),0,8);
+
+      $usuario = $consulta[0];
+      $usuario->password = Hash::make($nuevopw);
+      $usuario->save();
     
+      $datos = array('destinatario'=>$email, 'nuevopw'=>$nuevopw);
+
+      Mail::send('recupero', $datos, function($msj) use($asunto,$email,$nuevopw){
+        $msj->from('alexis.morgomez20@gmail.com','Alexis Morales Gomez');
+        $msj->to($email);
+        $msj->subject($asunto);
+      });      
+
+      Session::flash('cambio','Tu contraseña ha sido modificada, revisa tu correo');
+      return redirect()->route('login');
+
+
+    }
   }
 
   public function principal(){
