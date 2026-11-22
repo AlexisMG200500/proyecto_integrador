@@ -3,6 +3,8 @@ services:
     build: .
     container_name: laravel-app
     restart: unless-stopped
+    env_file:
+      - .env
     networks:
       - homelab-net
       - homelab-db-net
