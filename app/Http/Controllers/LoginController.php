@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Session;
 
 
-class LoginController extends Controller
-{
+class LoginController extends Controller{
   public function login(){
     return view ('login');
   }
@@ -34,14 +33,8 @@ class LoginController extends Controller
     }else{
       Session::put('sessionnombre',$consulta[0]->nombre);
       Session::put('sessionid',$consulta[0]->id);
-
       return redirect()->route('principal');
-
     }
-
-    
-
-
   }
 
   public function cerrarsession(){
@@ -60,18 +53,12 @@ class LoginController extends Controller
   }
 
   public function principal(){
-
     $sessionnombre = session('sessionnombre');
-
     if($sessionnombre<>""){
       return view('layouts.app');
     }else{
       Session::flash('error','Debes iniciar sesión');
       return redirect()->route('login'); 
     }
-
-
   }
-
-
 }
