@@ -68,7 +68,7 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#"><i class="fa fa-fw fa-user-circle"></i>Usuarios <span class="badge badge-success"></span>
+                                <a class="nav-link" href="{{route('usuarios')}}"><i class="fa fa-fw fa-user-circle"></i>Usuarios <span class="badge badge-success"></span>
                                 </a>
 
                             </li>
