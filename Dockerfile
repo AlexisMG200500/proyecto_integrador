@@ -14,5 +14,7 @@ COPY . .
 RUN composer dump-autoload --optimize \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+COPY docker/nginx.conf /etc/nginx/http.d/default.conf
+
 EXPOSE 80
 CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
