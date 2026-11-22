@@ -5,7 +5,12 @@ services:
     restart: unless-stopped
     networks:
       - homelab-net
+      - homelab-db-net
 
 networks:
   homelab-net:
     external: true
+    name: homelab-net
+  homelab-db-net:
+    external: true
+    name: homelab-db-net
