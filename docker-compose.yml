@@ -1,0 +1,11 @@
+services:
+  laravel-app:
+    build: .
+    container_name: laravel-app
+    restart: unless-stopped
+    networks:
+      - homelab-net
+
+networks:
+  homelab-net:
+    external: true
