@@ -1,7 +1,7 @@
 FROM php:8.5-fpm-alpine
 
-RUN apk add --no-cache nginx curl zip unzip libpng-dev oniguruma-dev libxml2-dev sqlite-dev \
-    && docker-php-ext-install pdo pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd
+RUN apk add --no-cache nginx curl zip unzip libzip-dev libpng-dev oniguruma-dev libxml2-dev sqlite-dev \
+    && docker-php-ext-install pdo pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd zip
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
