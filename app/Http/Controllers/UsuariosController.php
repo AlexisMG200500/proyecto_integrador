@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
 use PDF;
+use Maatwebsite\Excel\Excel;
+use App\Exports\UsuariosExport;
 
 class UsuariosController extends Controller
 {
@@ -56,7 +58,13 @@ class UsuariosController extends Controller
     return $pdf -> stream('usuarios');
   }
 
+  private $excel;
+  public function __construct(Excel $excel){
+    $this->excel = $excel;
+  }
 
-
+  public function usuarios_export(){
+    return $this->excel->download(new UsuariosExport,'usuarios.xlsx');
+  }
 
 }
