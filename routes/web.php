@@ -14,6 +14,9 @@ Route::get('/principal',[LoginController::class,'principal'])->name('principal')
 Route::get('/usuarios',[App\Http\Controllers\UsuariosController::class,'usuarios'])->name('usuarios');
 Route::get('/alta_usuario',[App\Http\Controllers\UsuariosController::class,'alta_usuario'])->name('alta_usuario');
 Route::post('/guardar_usuario',[App\Http\Controllers\UsuariosController::class,'guardar_usuario'])->name('guardar_usuario');
+Route::get('/usuario_detalle/{id}',[App\Http\Controllers\UsuariosController::class,'usuario_detalle'])->name('usuario_detalle');
+Route::get('/editar_usuario/{id}',[App\Http\Controllers\UsuariosController::class,'editar_usuario'])->name('editar_usuario');
+Route::put('/usuario_editado',[App\Http\Controllers\UsuariosController::class,'usuario_editado'])->name('usuario_editado');
 
 
 /* Route::get('/', function () {

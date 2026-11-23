@@ -61,8 +61,8 @@
                                             <form action="#" method="POST">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
-                                                <a href="#"><button type="button" class="btn btn-secondary">Ver</button></a>
-                                                <a href="#"><button type="button" class="btn btn-primary">Modificar</button></a>
+                                                <a href="{{route('usuario_detalle',$usuario->id)}}"><button type="button" class="btn btn-secondary">Ver</button></a>
+                                                <a href="{{route('editar_usuario', $usuario->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
                                                 <button type="submit" class="btn btn-danger">Eliminar</button>
         
                                             </form>
