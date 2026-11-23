@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 
 class UsuariosController extends Controller
 {
@@ -49,6 +50,11 @@ class UsuariosController extends Controller
     return redirect()->route('usuarios');
   }
 
+  public function pdf_usuarios(){
+    $usuarios = Usuario::all();
+    $pdf = PDF::loadView('usuarios.pdf', compact('usuarios'))->setPaper('a4', 'landscape');;
+    return $pdf -> stream('usuarios');
+  }
 
 
 
