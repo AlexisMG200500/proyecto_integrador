@@ -58,14 +58,15 @@
                                         <td>{{$usuario->email}}</td>
                                         <td>{{$usuario->password}}</td>
                                         <td>
-                                            <form action="#" method="POST">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
+                                       
                                                 <a href="{{route('usuario_detalle',$usuario->id)}}"><button type="button" class="btn btn-secondary">Ver</button></a>
                                                 <a href="{{route('editar_usuario', $usuario->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
-                                                <button type="submit" class="btn btn-danger">Eliminar</button>
-        
-                                            </form>
+                                                <form action="{{ route('eliminar_usuario', $usuario->id) }}" method="POST" style="display:inline;">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+</form>
+                                   
                                         </td>
                                     </tr>
                                     @endforeach
