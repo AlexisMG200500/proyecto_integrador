@@ -67,4 +67,11 @@ class UsuariosController extends Controller
     return $this->excel->download(new UsuariosExport,'usuarios.xlsx');
   }
 
+  public function eliminar_usuario($id){
+    $usuario = Usuario::find($id);
+    $usuario->delete();
+    return redirect()->route('usuarios');    
+  }
+
+
 }
