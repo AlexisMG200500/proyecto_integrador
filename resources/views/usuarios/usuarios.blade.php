@@ -1,10 +1,6 @@
 @extends('../layouts/app')
-<!--Principal-->
 @section('contenido')
     <div class="container-fluid  dashboard-content">
-        <!-- ============================================================== -->
-        <!-- pageheader -->
-        <!-- ============================================================== -->
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-header">
@@ -12,13 +8,7 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- end pageheader -->
-        <!-- ============================================================== -->
         <div class="row">
-            <!-- ============================================================== -->
-            <!-- data table  -->
-            <!-- ============================================================== -->
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="box-body">
                     <form name="search" method="GET">
@@ -58,15 +48,13 @@
                                         <td>{{$usuario->email}}</td>
                                         <td>{{$usuario->password}}</td>
                                         <td>
-                                       
-                                                <a href="{{route('usuario_detalle',$usuario->id)}}"><button type="button" class="btn btn-secondary">Ver</button></a>
-                                                <a href="{{route('editar_usuario', $usuario->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
-                                                <form action="{{ route('eliminar_usuario', $usuario->id) }}" method="POST" style="display:inline;">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="btn btn-danger">Eliminar</button>
-</form>
-                                   
+                                            <a href="{{route('usuario_detalle',$usuario->id)}}"><button type="button" class="btn btn-secondary">Ver</button></a>
+                                            <a href="{{route('editar_usuario', $usuario->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
+                                            <form action="{{ route('eliminar_usuario', $usuario->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -79,9 +67,6 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- end data table  -->
-            <!-- ============================================================== -->
         </div>
     </div>    
 @endsection
