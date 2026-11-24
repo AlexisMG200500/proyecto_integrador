@@ -53,8 +53,8 @@
                                         <td>{{$cliente->telefono}}</td>
                                         <td>{{$cliente->direccion}}</td>
                                         <td>
-                                            <a href="#"><button type="button" class="btn btn-secondary">Ver</button></a>
-                                            <a href="#"><button type="button" class="btn btn-primary">Modificar</button></a>
+                                            <a href="{{route('detalle_cliente',$cliente->id)}}"><button type="button" class="btn btn-secondary">Ver</button></a>
+                                            <a href="{{route('modificar_cliente',$cliente->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
                                             <button type="submit" class="btn btn-danger">Eliminar</button>
                                         </td>
                                     </tr>
