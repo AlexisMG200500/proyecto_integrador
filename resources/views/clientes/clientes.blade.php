@@ -55,13 +55,17 @@
                                         <td>
                                             <a href="{{route('detalle_cliente',$cliente->id)}}"><button type="button" class="btn btn-secondary">Ver</button></a>
                                             <a href="{{route('modificar_cliente',$cliente->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
-                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            <form action="{{route('eliminar_cliente',$cliente->id)}}" method="post">
+                                                {{csrf_field()}}
+                                                {{method_field('DELETE')}}                                                
+                                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <a href="#"><button type="button" class="btn btn-primary">Generar reporte PDF</button></a> <br>
+                            <a href="{{route('pdf_clientes')}}"><button type="button" class="btn btn-primary">Generar reporte PDF</button></a> <br>
                             <a href="#"><button type="button" class="btn btn-warning">Generar reporte EXCEL con criterio</button></a>
                         </div>
                     </div>

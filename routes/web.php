@@ -29,7 +29,8 @@ Route::prefix('/clientes')->group(function () {
     Route::get('/detalle_cliente/{id}',[App\Http\Controllers\ClientesController::class,'detalle_cliente'])->name('detalle_cliente');
     Route::get('/modificar_cliente/{id}',[App\Http\Controllers\ClientesController::class,'modificar_cliente'])->name('modificar_cliente');
     Route::put('/cliente_modificado',[App\Http\Controllers\ClientesController::class,'cliente_modificado'])->name('cliente_modificado');
-    
+    Route::delete('/eliminar_cliente/{id}',[App\Http\Controllers\ClientesController::class,'eliminar_cliente'])->name('eliminar_cliente');
+    Route::get('/pdf_clientes', [App\Http\Controllers\ClientesController::class,'pdf_clientes'])->name('pdf_clientes');
 
 });
 
