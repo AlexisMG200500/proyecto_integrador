@@ -21,7 +21,13 @@ Route::get('/pdf_usuarios',[App\Http\Controllers\UsuariosController::class,'pdf_
 Route::get('/usuarios_export',[App\Http\Controllers\UsuariosController::class,'usuarios_export'])->name('usuarios_export');
 Route::delete('/eliminar_usuario/{id}',[App\Http\Controllers\UsuariosController::class,'eliminar_usuario'])->name('eliminar_usuario');
 
-
+// ! Clientes
+Route::prefix('/clientes')->group(function () {
+    Route::get('/',[App\Http\Controllers\ClientesController::class,'clientes'])->name('clientes');
+    Route::get('/alta_cliente',[App\Http\Controllers\ClientesController::class,'alta_cliente'])->name('alta_cliente');
+    Route::post('/guardar_cliente',[App\Http\Controllers\ClientesController::class,'guardar_cliente'])->name('guardar_cliente');
+    
+});
 
 /* Route::get('/', function () {
     return view('welcome');
