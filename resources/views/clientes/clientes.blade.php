@@ -65,7 +65,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <a href="#"><button type="button" class="btn btn-primary">Generar reporte PDF</button></a> <br>
+                            <a href="{{route('pdf_clientes')}}"><button type="button" class="btn btn-primary">Generar reporte PDF</button></a> <br>
                             <a href="#"><button type="button" class="btn btn-warning">Generar reporte EXCEL con criterio</button></a>
                         </div>
                     </div>

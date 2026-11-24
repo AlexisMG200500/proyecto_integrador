@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use PDF;
 
 class ClientesController extends Controller
 {
@@ -58,5 +59,10 @@ class ClientesController extends Controller
     return redirect()->route('clientes');
   }
 
+  public function pdf_clientes(){
+    $clientes = Cliente::all();
+    $pdf = PDF::loadView('clientes.pdf',compact('clientes'))->setPaper('a4','landscape');
+    return $pdf->stream('clientes');
+  }
 
 }
