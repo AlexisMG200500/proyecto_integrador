@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use PDF;
+use Maatwebsite\Excel\Excel;
+use App\Exports\ClientesExport;
 
 class ClientesController extends Controller
 {
@@ -63,6 +65,15 @@ class ClientesController extends Controller
     $clientes = Cliente::all();
     $pdf = PDF::loadView('clientes.pdf',compact('clientes'))->setPaper('a4','landscape');
     return $pdf->stream('clientes');
+  }
+
+  private $excel;
+  public function __construct(Excel $excel){
+    $this->excel = $excel;
+  }
+
+  public function clientes_export(){
+    return $this->excel->download(new ClientesExport,'clientes.xlsx');
   }
 
 }
