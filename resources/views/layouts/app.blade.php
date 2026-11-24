@@ -73,7 +73,7 @@
 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-fw fa-rocket"></i>Clientes</a>
+                                <a class="nav-link" href="{{route('clientes')}}"><i class="fa fa-fw fa-rocket"></i>Clientes</a>
 
                             </li>
                             <li class="nav-item">
