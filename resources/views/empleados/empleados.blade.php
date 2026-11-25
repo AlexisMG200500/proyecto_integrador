@@ -50,7 +50,7 @@
                                         <td>{{$empleado->direccion}}</td>
                                         <td>
                                             <a href="{{route('detalle_empleado',$empleado->id)}}"><button type="button" class="btn btn-secondary">Ver</button></a>
-                                            <a href="#"><button type="button" class="btn btn-primary">Modificar</button></a>
+                                            <a href="{{route('editar_empleado',$empleado->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
                                             <button type="submit" class="btn btn-danger">Eliminar</button>
                                         </td>
                                     </tr>

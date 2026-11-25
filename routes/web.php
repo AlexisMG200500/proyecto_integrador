@@ -40,6 +40,8 @@ Route::prefix('/empleados')->group(function () {
     Route::get('/alta_empleado',[EmpleadosController::class,'alta_empleado'])->name('alta_empleado');
     Route::post('/guardar_empleado',[EmpleadosController::class,'guardar_empleado'])->name('guardar_empleado');
     Route::get('/detalle_empleado/{id}',[EmpleadosController::class,'detalle_empleado'])->name('detalle_empleado');
+    Route::get('/editar_empleado/{id}',[EmpleadosController::class,'editar_empleado'])->name('editar_empleado');
+    Route::put('/empleado_editado',[EmpleadosController::class,'empleado_editado'])->name('empleado_editado');
 });
 
 /* Route::get('/', function () {

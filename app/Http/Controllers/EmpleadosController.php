@@ -28,7 +28,24 @@ class EmpleadosController extends Controller
 
   public function detalle_empleado($id){
     $empleado = Empleado::find($id);
-    return $empleado;
+    return view('empleados.detalle')->with('empleado',$empleado);
   }
+
+  public function editar_empleado($id){
+    $empleado = Empleado::find($id);
+    return view('empleados.modificar')->with('empleado',$empleado);
+  }
+
+  public function empleado_editado(Request $request){
+    $empleado = Empleado::find($request->id);
+    $empleado->nombre = $request->nombre;
+    $empleado->apellido_paterno = $request->apellido_paterno;
+    $empleado->apellido_materno = $request->apellido_materno;
+    $empleado->telefono = $request->telefono;
+    $empleado->direccion = $request->direccion;
+    $empleado->save();
+    return redirect()->route('empleados');
+    }
+
 
 }
