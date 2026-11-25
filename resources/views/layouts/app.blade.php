@@ -77,7 +77,7 @@
 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" ><i class="fas fa-fw fa-chart-pie"></i>Empleados</a>
+                                <a class="nav-link" href="{{route('empleados')}}" ><i class="fas fa-fw fa-chart-pie"></i>Empleados</a>
 
                             </li>
                             <li class="nav-item ">
