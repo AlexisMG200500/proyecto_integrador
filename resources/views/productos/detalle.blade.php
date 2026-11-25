@@ -55,7 +55,11 @@
          
 
           <a href="{{route('producto_editar',$producto->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
-            <button type="submit" class="btn btn-danger">Eliminar</button>
+          <form action="{{route('producto_eliminar',$producto->id)}}" method="post">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger">Eliminar</button>
+          </form>
             
    
           </td>

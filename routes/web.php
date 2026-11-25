@@ -57,6 +57,8 @@ Route::prefix('productos')->group(function () {
     Route::get('/producto_detalles/{id}',[ProductosController::class,'producto_detalles'])->name('producto_detalles');
     Route::get('/producto_editar/{id}',[ProductosController::class,'producto_editar'])->name('producto_editar');
     Route::put('/producto_editado',[ProductosController::class,'producto_editado'])->name('producto_editado');
+    Route::delete('/producto_eliminar/{id}',[ProductosController::class,'producto_eliminar'])->name('producto_eliminar');
+    Route::get('/productos_pdf',[ProductosController::class,'productos_pdf'])->name('productos_pdf');
     }); 
 
 

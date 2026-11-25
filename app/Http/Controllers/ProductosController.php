@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
+use PDF;
 
 class ProductosController extends Controller
 {
@@ -49,5 +50,18 @@ class ProductosController extends Controller
     $producto->save();
     return redirect()->route('productos');
   }
+
+  public function producto_eliminar($id){
+    $producto = Producto::find($id);
+    $producto->delete();
+    return redirect()->route('productos');      
+  }
+
+  public function productos_pdf(){
+    $productos = Producto::all();
+    $pdf = PDF::loadView('productos.pdf', compact('productos'))->setPaper('a4','landscape');
+    return $pdf->stream('productos');
+  }
+
 
 }

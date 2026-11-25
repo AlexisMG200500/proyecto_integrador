@@ -67,7 +67,14 @@
 
             <a href="{{route('producto_detalles',$producto->id)}}"><button type="button" class="btn btn-secondary">Ver</button></a>
           <a href="{{route('producto_editar',$producto->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
-            <button type="submit" class="btn btn-danger">Eliminar</button>
+          
+          <form action="{{route('producto_eliminar',$producto->id)}}" method="post">
+                {{csrf_field()}}
+                {{method_field('DELETE')}}
+
+                                                     
+              <button type="submit" class="btn btn-danger">Eliminar</button>
+          </form>
             
           </td>
                                         
@@ -75,7 +82,7 @@
                                               @endforeach
                                         </tbody>
                                     </table><br>
-            <a href="#"><button type="button" class="btn btn-primary">Generar reporte PDF</button></a>
+            <a href="{{route('productos_pdf')}}"><button type="button" class="btn btn-primary">Generar reporte PDF</button></a>
             <a href="#"><button type="button" class="btn btn-warning">Generar reporte EXCEL</button></a>
 				</div>
                             </div>
