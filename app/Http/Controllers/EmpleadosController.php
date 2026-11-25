@@ -45,7 +45,13 @@ class EmpleadosController extends Controller
     $empleado->direccion = $request->direccion;
     $empleado->save();
     return redirect()->route('empleados');
-    }
+  }
+
+  public function eliminar_empleado($id){
+    $empleado = Empleado::find($id);
+    $empleado->delete();
+    return redirect()->route('empleados');
+  }
 
 
 }

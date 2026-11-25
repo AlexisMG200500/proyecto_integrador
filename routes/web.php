@@ -42,6 +42,7 @@ Route::prefix('/empleados')->group(function () {
     Route::get('/detalle_empleado/{id}',[EmpleadosController::class,'detalle_empleado'])->name('detalle_empleado');
     Route::get('/editar_empleado/{id}',[EmpleadosController::class,'editar_empleado'])->name('editar_empleado');
     Route::put('/empleado_editado',[EmpleadosController::class,'empleado_editado'])->name('empleado_editado');
+    Route::delete('/eliminar_empleado/{id}',[EmpleadosController::class,'eliminar_empleado'])->name('eliminar_empleado');
 });
 
 /* Route::get('/', function () {

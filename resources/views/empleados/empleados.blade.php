@@ -51,7 +51,11 @@
                                         <td>
                                             <a href="{{route('detalle_empleado',$empleado->id)}}"><button type="button" class="btn btn-secondary">Ver</button></a>
                                             <a href="{{route('editar_empleado',$empleado->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
-                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            <form action="{{route('eliminar_empleado',$empleado->id)}}" method="post">
+                                                {{csrf_field()}}
+                                                {{method_field('DELETE')}}
+                                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
