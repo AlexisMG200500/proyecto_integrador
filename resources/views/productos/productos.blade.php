@@ -65,8 +65,8 @@
     
         
 
-            <a href="#"><button type="button" class="btn btn-secondary">Ver</button></a>
-          <a href="#"><button type="button" class="btn btn-primary">Modificar</button></a>
+            <a href="{{route('producto_detalles',$producto->id)}}"><button type="button" class="btn btn-secondary">Ver</button></a>
+          <a href="{{route('producto_editar',$producto->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
             <button type="submit" class="btn btn-danger">Eliminar</button>
             
           </td>

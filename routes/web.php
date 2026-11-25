@@ -54,7 +54,10 @@ Route::prefix('productos')->group(function () {
     Route::get('/',[ProductosController::class,'productos'])->name('productos');
     Route::get('/alta_producto',[ProductosController::class,'alta_producto'])->name('alta_producto');
     Route::post('/guardar_producto',[ProductosController::class,'guardar_producto'])->name('guardar_producto');
-}); 
+    Route::get('/producto_detalles/{id}',[ProductosController::class,'producto_detalles'])->name('producto_detalles');
+    Route::get('/producto_editar/{id}',[ProductosController::class,'producto_editar'])->name('producto_editar');
+    Route::put('/producto_editado',[ProductosController::class,'producto_editado'])->name('producto_editado');
+    }); 
 
 
 
