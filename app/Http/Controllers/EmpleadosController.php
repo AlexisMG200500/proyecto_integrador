@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Empleado;
+use PDF;
+use Maatwebsite\Excel\Excel;
+use App\Exports\EmpleadosExport;
+
 class EmpleadosController extends Controller
 {
   public function empleados(){
@@ -52,6 +56,26 @@ class EmpleadosController extends Controller
     $empleado->delete();
     return redirect()->route('empleados');
   }
+
+  public function empleados_pdf(){
+    $empleados = Empleado::all();
+    $pdf = PDF::loadView('empleados.pdf',compact('empleados'))->setPaper('a4','landscape');
+    return $pdf->stream('empleados');
+  }
+
+  private $excel;
+
+  public function __construct(Excel $excel){
+    $this->excel = $excel;
+  }
+
+  public function empleados_export(){
+    return $this->excel->download(new EmpleadosExport,'empleados.xlsx');
+  }
+
+
+
+  
 
 
 }

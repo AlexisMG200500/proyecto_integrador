@@ -66,7 +66,7 @@
                                 </tbody>
                             </table>
                             <a href="{{route('pdf_clientes')}}"><button type="button" class="btn btn-primary">Generar reporte PDF</button></a> <br>
-                            <a href="#"><button type="button" class="btn btn-warning">Generar reporte EXCEL con criterio</button></a>
+                            <a href="{{route('clientes_export')}}"><button type="button" class="btn btn-warning">Generar reporte EXCEL</button></a>
                         </div>
                     </div>
                 </div>
