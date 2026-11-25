@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EmpleadosController;
+use App\Http\Controllers\ProductosController;
 
 Route::get('/', [LoginController::class,'login'])->name('login');
 Route::post('/valida', [LoginController::class,'valida'])->name('valida');
@@ -47,6 +48,15 @@ Route::prefix('/empleados')->group(function () {
     Route::get('/empleados_pdf',[EmpleadosController::class,'empleados_pdf'])->name('empleados_pdf');
     Route::get('/empleados_export',[EmpleadosController::class,'empleados_export'])->name('empleados_export');
 });
+
+//! Productos
+Route::prefix('productos')->group(function () {
+    Route::get('/',[ProductosController::class,'productos'])->name('productos');
+    Route::get('/alta_producto',[ProductosController::class,'alta_producto'])->name('alta_producto');
+    Route::post('/guardar_producto',[ProductosController::class,'guardar_producto'])->name('guardar_producto');
+}); 
+
+
 
 /* Route::get('/', function () {
     return view('welcome');

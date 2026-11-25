@@ -81,7 +81,7 @@
 
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#"><i class="fab fa-fw fa-wpforms"></i>Productos</a>
+                                <a class="nav-link" href="{{route('productos')}}"><i class="fab fa-fw fa-wpforms"></i>Productos</a>
 
                             </li>
                             <li class="nav-item">
