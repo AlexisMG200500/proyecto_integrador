@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\EmpleadosController;
 
 Route::get('/', [LoginController::class,'login'])->name('login');
 Route::post('/valida', [LoginController::class,'valida'])->name('valida');
@@ -31,7 +32,20 @@ Route::prefix('/clientes')->group(function () {
     Route::put('/cliente_modificado',[App\Http\Controllers\ClientesController::class,'cliente_modificado'])->name('cliente_modificado');
     Route::delete('/eliminar_cliente/{id}',[App\Http\Controllers\ClientesController::class,'eliminar_cliente'])->name('eliminar_cliente');
     Route::get('/pdf_clientes', [App\Http\Controllers\ClientesController::class,'pdf_clientes'])->name('pdf_clientes');
+    Route::get('/clientes_export', [App\Http\Controllers\ClientesController::class,'clientes_export'])->name('clientes_export');
+});
 
+// ! Empleados
+Route::prefix('/empleados')->group(function () {
+    Route::get('/',[EmpleadosController::class,'empleados'])->name('empleados');
+    Route::get('/alta_empleado',[EmpleadosController::class,'alta_empleado'])->name('alta_empleado');
+    Route::post('/guardar_empleado',[EmpleadosController::class,'guardar_empleado'])->name('guardar_empleado');
+    Route::get('/detalle_empleado/{id}',[EmpleadosController::class,'detalle_empleado'])->name('detalle_empleado');
+    Route::get('/editar_empleado/{id}',[EmpleadosController::class,'editar_empleado'])->name('editar_empleado');
+    Route::put('/empleado_editado',[EmpleadosController::class,'empleado_editado'])->name('empleado_editado');
+    Route::delete('/eliminar_empleado/{id}',[EmpleadosController::class,'eliminar_empleado'])->name('eliminar_empleado');
+    Route::get('/empleados_pdf',[EmpleadosController::class,'empleados_pdf'])->name('empleados_pdf');
+    Route::get('/empleados_export',[EmpleadosController::class,'empleados_export'])->name('empleados_export');
 });
 
 /* Route::get('/', function () {

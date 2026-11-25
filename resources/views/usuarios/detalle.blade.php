@@ -43,12 +43,11 @@
                                         <td>{{$usuario->email}}</td>
                                         <td>{{$usuario->password}}</td>
                                         <td>
-                                            <form action="#" method="POST">
+                                            <a href="{{route('editar_usuario', $usuario->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
+                                            <form action="{{route('eliminar_usuario',$usuario->id)}}" method="POST">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
-                                                <a href="{{route('editar_usuario', $usuario->id)}}"><button type="button" class="btn btn-primary">Modificar</button></a>
                                                 <button type="submit" class="btn btn-danger">Eliminar</button>
-            
                                             </form>
                                         </td>
                                     </tr>
