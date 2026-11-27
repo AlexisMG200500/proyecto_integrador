@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use PDF;
+use Maatwebsite\Excel\Excel;
+use App\Exports\ProductosExport;
 
 class ProductosController extends Controller
 {
@@ -62,6 +64,16 @@ class ProductosController extends Controller
     $pdf = PDF::loadView('productos.pdf', compact('productos'))->setPaper('a4','landscape');
     return $pdf->stream('productos');
   }
+
+  private $excel;
+
+  public function __construct(Excel $excel){
+    $this->excel = $excel;      
+  }
+
+  public function productos_export(){
+    return $this->excel->download(new ProductosExport,'productos.xlsx');
+  }  
 
 
 }
