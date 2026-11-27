@@ -59,6 +59,7 @@ Route::prefix('productos')->group(function () {
     Route::put('/producto_editado',[ProductosController::class,'producto_editado'])->name('producto_editado');
     Route::delete('/producto_eliminar/{id}',[ProductosController::class,'producto_eliminar'])->name('producto_eliminar');
     Route::get('/productos_pdf',[ProductosController::class,'productos_pdf'])->name('productos_pdf');
+    Route::get('/productos_export',[ProductosController::class,'productos_export'])->name('productos_export');
     }); 
 
 
