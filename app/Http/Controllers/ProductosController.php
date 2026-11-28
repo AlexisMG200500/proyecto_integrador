@@ -11,58 +11,114 @@ use App\Exports\ProductosExport;
 class ProductosController extends Controller
 {
   public function productos(){
-    $productos = Producto::all();
-    return view('productos.productos')->with('productos',$productos);
+    $sessionid = session('sessionid');
+    $sessionnombre = session('sessionnombre');
+    if($sessionnombre<>"" && $sessionid<>""){
+      $productos = Producto::all();
+      return view('productos.productos')->with('productos',$productos);
+    }else{
+      Session::flash('error','Debes iniciar sesión');
+      return redirect()->route('login'); 
+    }
   }
 
   public function alta_producto(){
-    return view('productos.nuevo');      
+    $sessionid = session('sessionid');
+    $sessionnombre = session('sessionnombre');
+    if($sessionnombre<>"" && $sessionid<>""){
+      return view('productos.nuevo');    
+    }else{
+      Session::flash('error','Debes iniciar sesión');
+      return redirect()->route('login'); 
+    }  
   }
 
   public function guardar_producto(Request $request){
-    $producto = new Producto();
-    $producto->producto = $request->producto;
-    $producto->serie = $request->serie;
-    $producto->caracteristicas = $request->caracteristicas;
-    $producto->falla = $request->falla;
-    $producto->cantidad = $request->cantidad;
-    $producto->precio = $request->precio;
-    $producto->save();
-    return redirect()->route('productos');
+    $sessionid = session('sessionid');
+    $sessionnombre = session('sessionnombre');
+    if($sessionnombre<>"" && $sessionid<>""){
+      $producto = new Producto();
+      $producto->producto = $request->producto;
+      $producto->serie = $request->serie;
+      $producto->caracteristicas = $request->caracteristicas;
+      $producto->falla = $request->falla;
+      $producto->cantidad = $request->cantidad;
+      $producto->precio = $request->precio;
+      $producto->save();
+      return redirect()->route('productos');
+    }else{
+      Session::flash('error','Debes iniciar sesión');
+      return redirect()->route('login'); 
+    }
   }
 
   public function producto_detalles($id){
-    $producto = Producto::find($id);
-    return view('productos.detalle',compact('producto'));    
+    $sessionid = session('sessionid');
+    $sessionnombre = session('sessionnombre');
+    if($sessionnombre<>"" && $sessionid<>""){
+      $producto = Producto::find($id);
+      return view('productos.detalle',compact('producto'));
+    }else{
+      Session::flash('error','Debes iniciar sesión');
+      return redirect()->route('login'); 
+    }
   }
 
   public function producto_editar($id){
-    $producto = Producto::find($id);
-    return view('productos.editar',compact('producto'));   
+    $sessionid = session('sessionid');
+    $sessionnombre = session('sessionnombre');
+    if($sessionnombre<>"" && $sessionid<>""){
+      $producto = Producto::find($id);
+      return view('productos.editar',compact('producto'));
+    }else{
+      Session::flash('error','Debes iniciar sesión');
+      return redirect()->route('login'); 
+    }
   }
 
   public function producto_editado(Request $request){
-    $producto = Producto::find($request->id);
-    $producto->producto = $request->producto;
-    $producto->serie = $request->serie;
-    $producto->caracteristicas = $request->caracteristicas;
-    $producto->falla = $request->falla;
-    $producto->cantidad = $request->cantidad;
-    $producto->precio = $request->precio;
-    $producto->save();
-    return redirect()->route('productos');
+    $sessionid = session('sessionid');
+    $sessionnombre = session('sessionnombre');
+    if($sessionnombre<>"" && $sessionid<>""){
+      $producto = Producto::find($request->id);
+      $producto->producto = $request->producto;
+      $producto->serie = $request->serie;
+      $producto->caracteristicas = $request->caracteristicas;
+      $producto->falla = $request->falla;
+      $producto->cantidad = $request->cantidad;
+      $producto->precio = $request->precio;
+      $producto->save();
+      return redirect()->route('productos');
+    }else{
+      Session::flash('error','Debes iniciar sesión');
+      return redirect()->route('login'); 
+    }
   }
 
   public function producto_eliminar($id){
-    $producto = Producto::find($id);
-    $producto->delete();
-    return redirect()->route('productos');      
+    $sessionid = session('sessionid');
+    $sessionnombre = session('sessionnombre');
+    if($sessionnombre<>"" && $sessionid<>""){
+      $producto = Producto::find($id);
+      $producto->delete();
+      return redirect()->route('productos');
+    }else{
+      Session::flash('error','Debes iniciar sesión');
+      return redirect()->route('login'); 
+    }
   }
 
   public function productos_pdf(){
-    $productos = Producto::all();
-    $pdf = PDF::loadView('productos.pdf', compact('productos'))->setPaper('a4','landscape');
-    return $pdf->stream('productos');
+    $sessionid = session('sessionid');
+    $sessionnombre = session('sessionnombre');
+    if($sessionnombre<>"" && $sessionid<>""){
+      $productos = Producto::all();
+      $pdf = PDF::loadView('productos.pdf', compact('productos'))->setPaper('a4','landscape');
+      return $pdf->stream('productos');
+    }else{
+      Session::flash('error','Debes iniciar sesión');
+      return redirect()->route('login'); 
+    }
   }
 
   private $excel;
@@ -72,6 +128,13 @@ class ProductosController extends Controller
   }
 
   public function productos_export(){
-    return $this->excel->download(new ProductosExport,'productos.xlsx');
+    $sessionid = session('sessionid');
+    $sessionnombre = session('sessionnombre');
+    if($sessionnombre<>"" && $sessionid<>""){
+      return $this->excel->download(new ProductosExport,'productos.xlsx');
+    }else{
+      Session::flash('error','Debes iniciar sesión');
+      return redirect()->route('login'); 
+    }
   }  
 }
