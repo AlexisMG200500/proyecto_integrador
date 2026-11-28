@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Cliente;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ClienteSeeder extends Seeder
 {
@@ -25,6 +26,30 @@ class ClienteSeeder extends Seeder
             ['Andrés', 'Medina', 'Castro', 'andres.medina@example.com', '5512345609', 'Calle Zaragoza 9, Cuernavaca'],
             ['Mariana', 'Herrera', 'Delgado', 'mariana.herrera@example.com', '5512345610', 'Av. Tecnológico 410, León'],
         ];
+
+        // Se generan 90 clientes más para completar 100 registros
+        $nombres = ['Alberto', 'Beatriz', 'César', 'Diana', 'Eduardo', 'Elena', 'Francisco', 'Guadalupe', 'Hugo', 'Isabel',
+            'Javier', 'Karla', 'Leonardo', 'Mónica', 'Nicolás', 'Olivia', 'Pablo', 'Rosa', 'Sergio', 'Teresa'];
+        $apellidos = ['García', 'Hernández', 'López', 'Martínez', 'González', 'Pérez', 'Rodríguez', 'Sánchez', 'Ramírez', 'Cruz',
+            'Flores', 'Gómez', 'Díaz', 'Vázquez', 'Moreno', 'Álvarez', 'Torres', 'Mendoza', 'Ruiz', 'Aguilar'];
+        $calles = ['Av. Reforma', 'Calle Hidalgo', 'Av. Juárez', 'Calle Morelos', 'Blvd. Independencia',
+            'Av. Universidad', 'Calle Allende', 'Av. Insurgentes', 'Calle Zaragoza', 'Av. Tecnológico'];
+        $ciudades = ['CDMX', 'Puebla', 'Guadalajara', 'Toluca', 'Querétaro', 'Monterrey', 'Pachuca', 'Cuernavaca', 'León', 'Mérida'];
+
+        for ($i = 11; $i <= 100; $i++) {
+            $nombre = $nombres[$i % 20];
+            $paterno = $apellidos[($i * 3) % 20];
+            $materno = $apellidos[($i * 7 + 5) % 20];
+
+            $clientes[] = [
+                $nombre,
+                $paterno,
+                $materno,
+                Str::lower(Str::ascii($nombre.'.'.$paterno)).$i.'@example.com',
+                '5512345'.str_pad($i, 3, '0', STR_PAD_LEFT),
+                $calles[$i % 10].' '.($i * 13).', '.$ciudades[($i * 3) % 10],
+            ];
+        }
 
         $now = Carbon::now();
 

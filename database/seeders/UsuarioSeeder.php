@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Usuario;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UsuarioSeeder extends Seeder
 {
@@ -25,6 +26,20 @@ class UsuarioSeeder extends Seeder
             ['Miguel Flores', 'mflores', 'miguel.flores@example.com'],
             ['Valeria Cruz', 'vcruz', 'valeria.cruz@example.com'],
         ];
+
+        // Se generan 90 usuarios más para completar 100 registros
+        $nombres = ['Andrea', 'Bruno', 'Camila', 'Daniel', 'Estefanía', 'Felipe', 'Gloria', 'Héctor', 'Irene', 'Jaime',
+            'Karen', 'Lorenzo', 'Marisol', 'Norberto', 'Ofelia', 'Ramón', 'Susana', 'Tadeo', 'Úrsula', 'Ximena'];
+        $apellidos = ['López', 'Pérez', 'Martínez', 'Hernández', 'García', 'Ramírez', 'Torres', 'Flores', 'Cruz', 'Reyes',
+            'Morales', 'Jiménez', 'Castillo', 'Ortiz', 'Romero', 'Medina', 'Herrera', 'Vargas', 'Rojas', 'Silva'];
+
+        for ($i = 11; $i <= 100; $i++) {
+            $nombre = $nombres[$i % 20];
+            $apellido = $apellidos[($i * 3) % 20];
+            $usuario = Str::lower(Str::ascii(Str::substr($nombre, 0, 1).$apellido)).$i;
+
+            $usuarios[] = [$nombre.' '.$apellido, $usuario, $usuario.'@example.com'];
+        }
 
         $password = Hash::make('12345');
 

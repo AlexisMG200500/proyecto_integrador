@@ -26,6 +26,50 @@ class VentaSeeder extends Seeder
             ['V-0010', '2', '1800', 'Doble banda, AC1200', 'Venta de routers TP-Link', 'Mariana Herrera Delgado'],
         ];
 
+        // Se generan 90 ventas más para completar 100 registros
+        // [producto, características, precio unitario]
+        $catalogo = [
+            ['laptop Lenovo IdeaPad', 'AMD Ryzen 5, 8GB RAM, 256GB SSD', 11800],
+            ['laptop Acer Aspire', 'Intel i3, 8GB RAM, 512GB SSD', 9500],
+            ['impresora HP DeskJet', 'Multifuncional, WiFi', 1900],
+            ['impresora Brother HL', 'Láser monocromática', 3500],
+            ['monitor LG 27 pulgadas', 'QHD, IPS, 75Hz', 4900],
+            ['monitor AOC 22 pulgadas', 'Full HD, VGA, HDMI', 2100],
+            ['teclado Redragon Kumara', 'Mecánico, RGB', 850],
+            ['mouse Razer DeathAdder', 'Óptico, 6400 DPI', 700],
+            ['disco SSD Kingston 480GB', 'SATA III, 2.5 pulgadas', 750],
+            ['disco SSD Samsung 970 EVO', 'NVMe M.2, 1TB', 1900],
+            ['memoria RAM Corsair 16GB', 'DDR4, 3600MHz', 1200],
+            ['tarjeta de video GTX 1650', '4GB GDDR6', 3900],
+            ['tarjeta madre ASUS Prime', 'Socket AM4, ATX', 2600],
+            ['procesador Intel i5 12400', '6 núcleos, 4.4GHz', 3700],
+            ['fuente de poder Corsair 650W', '80 Plus Bronze', 1500],
+            ['router Huawei AX3', 'WiFi 6, doble banda', 1300],
+            ['switch TP-Link 8 puertos', 'Gigabit, no administrable', 450],
+            ['No Break APC 750VA', 'Regulador integrado, 6 contactos', 1800],
+            ['bocinas Logitech Z313', '2.1, 25W', 950],
+            ['webcam Logitech C920', 'Full HD 1080p, micrófono', 1400],
+        ];
+        // Mismas listas que ClienteSeeder, así el nombre del cliente coincide con uno existente
+        $nombres = ['Alberto', 'Beatriz', 'César', 'Diana', 'Eduardo', 'Elena', 'Francisco', 'Guadalupe', 'Hugo', 'Isabel',
+            'Javier', 'Karla', 'Leonardo', 'Mónica', 'Nicolás', 'Olivia', 'Pablo', 'Rosa', 'Sergio', 'Teresa'];
+        $apellidos = ['García', 'Hernández', 'López', 'Martínez', 'González', 'Pérez', 'Rodríguez', 'Sánchez', 'Ramírez', 'Cruz',
+            'Flores', 'Gómez', 'Díaz', 'Vázquez', 'Moreno', 'Álvarez', 'Torres', 'Mendoza', 'Ruiz', 'Aguilar'];
+
+        for ($i = 11; $i <= 100; $i++) {
+            [$producto, $caracteristicas, $precioUnitario] = $catalogo[$i % 20];
+            $cantidad = $i % 4 + 1;
+
+            $ventas[] = [
+                'V-'.str_pad($i, 4, '0', STR_PAD_LEFT),
+                (string) $cantidad,
+                (string) ($precioUnitario * $cantidad),
+                $caracteristicas,
+                'Venta de '.$producto,
+                $nombres[$i % 20].' '.$apellidos[($i * 3) % 20].' '.$apellidos[($i * 7 + 5) % 20],
+            ];
+        }
+
         $now = Carbon::now();
 
         Venta::insert(array_map(fn ($v) => [
