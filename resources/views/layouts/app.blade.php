@@ -85,7 +85,7 @@
 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" ><i class="fas fa-fw fa-table"></i>Ventas</a>
+                                <a class="nav-link" href="{{route('ventas')}}" ><i class="fas fa-fw fa-table"></i>Ventas</a>
 
                             </li>
 

@@ -74,6 +74,4 @@ class ProductosController extends Controller
   public function productos_export(){
     return $this->excel->download(new ProductosExport,'productos.xlsx');
   }  
-
-
 }

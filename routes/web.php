@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\VentasController;
 
 Route::get('/', [LoginController::class,'login'])->name('login');
 Route::post('/valida', [LoginController::class,'valida'])->name('valida');
@@ -60,7 +61,19 @@ Route::prefix('productos')->group(function () {
     Route::delete('/producto_eliminar/{id}',[ProductosController::class,'producto_eliminar'])->name('producto_eliminar');
     Route::get('/productos_pdf',[ProductosController::class,'productos_pdf'])->name('productos_pdf');
     Route::get('/productos_export',[ProductosController::class,'productos_export'])->name('productos_export');
-    }); 
+}); 
+
+Route::prefix('ventas')->group(function () {
+    Route::get('/', [VentasController::class,'ventas'])->name('ventas');
+    Route::get('/alta_venta',[VentasController::class,'alta_venta'])->name('alta_venta');    
+    Route::post('/guardar_venta',[VentasController::class,'guardar_venta'])->name('guardar_venta');    
+    Route::get('/detalle_venta/{id}',[VentasController::class,'detalle_venta'])->name('detalle_venta');    
+    Route::get('/modificar_venta/{id}',[VentasController::class,'modificar_venta'])->name('modificar_venta');
+    Route::put('/venta_modificada',[VentasController::class,'venta_modificada'])->name('venta_modificada');    
+    Route::delete('/venta_eliminada/{id}',[VentasController::class,'venta_eliminada'])->name('venta_eliminada');    
+    Route::get('/ventas_pdf',[VentasController::class,'ventas_pdf'])->name('ventas_pdf');
+    Route::get('/ventas_export',[VentasController::class,'ventas_export'])->name('ventas_export');
+});
 
 
 
