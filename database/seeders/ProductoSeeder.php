@@ -26,6 +26,47 @@ class ProductoSeeder extends Seeder
             ['Router TP-Link Archer C6', 'TP-AR-0010', 'Doble banda, AC1200', 'Se desconecta', '7', '900'],
         ];
 
+        // Se generan 90 productos más para completar 100 registros
+        // [producto, prefijo de serie, características, precio]
+        $catalogo = [
+            ['Laptop Lenovo IdeaPad', 'LN-IP', 'AMD Ryzen 5, 8GB RAM, 256GB SSD', '11800'],
+            ['Laptop Acer Aspire', 'AC-AS', 'Intel i3, 8GB RAM, 512GB SSD', '9500'],
+            ['Impresora HP DeskJet', 'HP-DJ', 'Multifuncional, WiFi', '1900'],
+            ['Impresora Brother HL', 'BR-HL', 'Láser monocromática', '3500'],
+            ['Monitor LG 27 pulgadas', 'LG-MN', 'QHD, IPS, 75Hz', '4900'],
+            ['Monitor AOC 22 pulgadas', 'AO-MN', 'Full HD, VGA, HDMI', '2100'],
+            ['Teclado Redragon Kumara', 'RD-KM', 'Mecánico, RGB', '850'],
+            ['Mouse Razer DeathAdder', 'RZ-DA', 'Óptico, 6400 DPI', '700'],
+            ['Disco SSD Kingston 480GB', 'KG-SS', 'SATA III, 2.5 pulgadas', '750'],
+            ['Disco SSD Samsung 970 EVO', 'SM-SS', 'NVMe M.2, 1TB', '1900'],
+            ['Memoria RAM Corsair 16GB', 'CR-RM', 'DDR4, 3600MHz', '1200'],
+            ['Tarjeta de video GTX 1650', 'NV-GT', '4GB GDDR6', '3900'],
+            ['Tarjeta madre ASUS Prime', 'AS-PM', 'Socket AM4, ATX', '2600'],
+            ['Procesador Intel i5 12400', 'IN-I5', '6 núcleos, 4.4GHz', '3700'],
+            ['Fuente de poder Corsair 650W', 'CR-FP', '80 Plus Bronze', '1500'],
+            ['Router Huawei AX3', 'HW-AX', 'WiFi 6, doble banda', '1300'],
+            ['Switch TP-Link 8 puertos', 'TP-SW', 'Gigabit, no administrable', '450'],
+            ['No Break APC 750VA', 'AP-NB', 'Regulador integrado, 6 contactos', '1800'],
+            ['Bocinas Logitech Z313', 'LG-BZ', '2.1, 25W', '950'],
+            ['Webcam Logitech C920', 'LG-WC', 'Full HD 1080p, micrófono', '1400'],
+        ];
+        $fallas = ['No enciende', 'Pantalla con líneas', 'Atasco de papel', 'Sin señal', 'Teclas no responden',
+            'Se sobrecalienta', 'Sectores dañados', 'Pantallazo azul', 'No arranca', 'Se desconecta',
+            'Ruido extraño', 'Puerto USB dañado', 'No detecta dispositivo', 'Batería no carga', 'Sin falla'];
+
+        for ($i = 11; $i <= 100; $i++) {
+            [$nombre, $prefijo, $caracteristicas, $precio] = $catalogo[$i % 20];
+
+            $productos[] = [
+                $nombre,
+                $prefijo.'-'.str_pad($i, 4, '0', STR_PAD_LEFT),
+                $caracteristicas,
+                $fallas[$i % 15],
+                (string) (($i * 7) % 15 + 1),
+                $precio,
+            ];
+        }
+
         $now = Carbon::now();
 
         Producto::insert(array_map(fn ($p) => [

@@ -26,6 +26,25 @@ class EmpleadoSeeder extends Seeder
             ['Carmen', 'Núñez', 'Valdez', '5598765410', 'Av. Primavera 15, Cuernavaca'],
         ];
 
+        // Se generan 90 empleados más para completar 100 registros
+        $nombres = ['Adrián', 'Brenda', 'Cristian', 'Dulce', 'Emilio', 'Fabiola', 'Gerardo', 'Hilda', 'Iván', 'Julieta',
+            'Kevin', 'Liliana', 'Manuel', 'Norma', 'Óscar', 'Pilar', 'Rodrigo', 'Silvia', 'Tomás', 'Yolanda'];
+        $apellidos = ['Martínez', 'Gutiérrez', 'Ramos', 'Domínguez', 'Luna', 'Ríos', 'Campos', 'Estrada', 'Sandoval', 'Núñez',
+            'Salas', 'Ibarra', 'Fuentes', 'Cervantes', 'Molina', 'Ponce', 'Padilla', 'Acosta', 'Valdez', 'Lara'];
+        $calles = ['Calle Pino', 'Av. Central', 'Calle Roble', 'Av. Las Torres', 'Calle Cedro',
+            'Av. Lomas', 'Calle Olmo', 'Av. Del Sol', 'Calle Fresno', 'Av. Primavera'];
+        $ciudades = ['CDMX', 'Ecatepec', 'Naucalpan', 'Toluca', 'Tlalnepantla', 'Puebla', 'Querétaro', 'Pachuca', 'Cuernavaca', 'Tlaxcala'];
+
+        for ($i = 11; $i <= 100; $i++) {
+            $empleados[] = [
+                $nombres[$i % 20],
+                $apellidos[($i * 3) % 20],
+                $apellidos[($i * 7 + 5) % 20],
+                '5598765'.str_pad($i, 3, '0', STR_PAD_LEFT),
+                $calles[$i % 10].' '.($i * 11).', '.$ciudades[($i * 3) % 10],
+            ];
+        }
+
         $now = Carbon::now();
 
         Empleado::insert(array_map(fn ($e) => [
